@@ -4,8 +4,31 @@ body {
     background-color: darkgray;
     overflow: hidden;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#myCanvas {
+#verticalButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: gray;
+}
+
+#carCanvas {
     background-color: lightgray;
+}
+#networkCanvas {
+    background-color: black;
 }
