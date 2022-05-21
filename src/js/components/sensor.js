@@ -1,8 +1,10 @@
-class Sensor {
+import { lerp, getIntersection } from '../utils.js';
+
+export class Sensor {
     constructor(car) {
         this.car = car;
         this.rayCount = 5;
-        this.rayLength = 150;
+        this.rayLength = 300;
         this.raySpread = Math.PI / 2;
 
         this.rays = [];

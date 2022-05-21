@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -9,21 +13,44 @@ body {
     align-items: center;
 }
 
-#verticalButtons {
+#content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 1rem;
 }
 
-button {
+#menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-right: 5px;
+}
+#menu div * {
+    width: 43%;
+}
+
+button,
+.button,
+textarea {
     border: none;
+    background-color: white;
+    font-size: 14px;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
     cursor: pointer;
+    resize: none;
 }
-button:hover {
+
+button:hover,
+.button:hover {
     background: gray;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
 }
 
 #carCanvas {

@@ -1,17 +1,27 @@
+import { Car } from './components/car.js';
+import { Road } from './components/road.js';
+import { NeuralNetwork } from './network/network.js';
+import { Visualizer } from './network/visualizer.js';
+
 const carCanvas = document.getElementById('carCanvas');
 carCanvas.width = 200;
 
 const networkCanvas = document.getElementById('networkCanvas');
 networkCanvas.width = 300;
 
+const importJsonArea = document.getElementById('importJson');
+
 const carCtx = carCanvas.getContext('2d');
 const networkCtx = networkCanvas.getContext('2d');
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const N = 100;
+const N = 500;
 const cars = generateCars(N);
 let bestCar = cars[0];
-if (localStorage.getItem('bestBrain')) {
+if (
+    localStorage.getItem('bestBrain') &&
+    localStorage.getItem('bestBrain').length > 2
+) {
     for (let i = 0; i < cars.length; i++) {
         cars[i].brain = JSON.parse(localStorage.getItem('bestBrain'));
         if (i != 0) {
@@ -24,9 +34,17 @@ const traffic = [
     new Car(road.getLaneCenter(1), -100, 30, 50, 'DUMMY', 2),
     new Car(road.getLaneCenter(0), -300, 30, 50, 'DUMMY', 2),
     new Car(road.getLaneCenter(2), -300, 30, 50, 'DUMMY', 2),
+    new Car(road.getLaneCenter(0), -500, 30, 50, 'DUMMY', 2),
+    new Car(road.getLaneCenter(1), -500, 30, 50, 'DUMMY', 2),
+    new Car(road.getLaneCenter(1), -700, 30, 50, 'DUMMY', 2),
+    new Car(road.getLaneCenter(2), -700, 30, 50, 'DUMMY', 2),
 ];
 
 animate();
+
+window.save = save;
+window.discard = discard;
+window.importJson = importJson;
 
 function save() {
     localStorage.setItem('bestBrain', JSON.stringify(bestCar.brain));
@@ -34,6 +52,13 @@ function save() {
 
 function discard() {
     localStorage.removeItem('bestBrain');
+}
+
+function importJson() {
+    let json = importJsonArea.value.slice(1, -1).replaceAll('\\', '');
+    console.log('imported json');
+    console.log(importJsonArea.value.slice(1, -1));
+    localStorage.setItem('bestBrain', json);
 }
 
 function generateCars(N) {

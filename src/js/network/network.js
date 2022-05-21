@@ -1,4 +1,6 @@
-class NeuralNetwork {
+import { lerp } from '../utils.js';
+
+export class NeuralNetwork {
     constructor(neuronCounts) {
         this.levels = [];
         for (let i = 0; i < neuronCounts.length - 1; i++) {

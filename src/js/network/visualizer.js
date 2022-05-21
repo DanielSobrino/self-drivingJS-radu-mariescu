@@ -1,4 +1,6 @@
-class Visualizer {
+import { lerp, getRGBA } from '../utils.js';
+
+export class Visualizer {
     static drawNetwork(ctx, network) {
         const margin = 50;
         const left = margin;

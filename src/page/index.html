@@ -8,19 +8,31 @@
         <title>Self Driving</title>
     </head>
     <body>
-        <canvas id="carCanvas"></canvas>
-        <div id="verticalButtons">
-            <button onclick="save()">Save</button>
-            <button onclick="discard()">Discard</button>
+        <div id="content">
+            <canvas id="carCanvas"></canvas>
+            <div id="menu">
+                <div>
+                    <button onclick="save()">Save</button>
+                    <button onclick="discard()">Discard</button>
+                </div>
+                <a href="#" id="exportJson" download="brain.txt" class="button">
+                    Export
+                </a>
+                <textarea
+                    placeholder="Paste json from brain.txt"
+                    id="importJson"
+                ></textarea>
+                <button onclick="importJson()">Import</button>
+            </div>
+            <canvas id="networkCanvas"></canvas>
         </div>
-        <canvas id="networkCanvas"></canvas>
-        <script src="../js/network/visualizer.js"></script>
-        <script src="../js/network/network.js"></script>
-        <script src="../js/components/sensor.js"></script>
-        <script src="../js/utils.js"></script>
-        <script src="../js/components/road.js"></script>
+        <script type="module" src="../js/utils.js"></script>
+        <script type="module" src="../js/network/visualizer.js"></script>
+        <script type="module" src="../js/network/network.js"></script>
+        <script type="module" src="../js/components/sensor.js"></script>
+        <script type="module" src="../js/components/road.js"></script>
         <script src="../js/components/controls.js"></script>
-        <script src="../js/components/car.js"></script>
-        <script src="../js/main.js"></script>
+        <script type="module" src="../js/components/car.js"></script>
+        <script type="module" src="../js/main.js"></script>
     </body>
 </html>

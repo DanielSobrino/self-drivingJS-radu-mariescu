@@ -1,4 +1,8 @@
-class Car {
+import { NeuralNetwork } from '../network/network.js';
+import { polysIntersect } from '../utils.js';
+import { Sensor } from '../components/sensor.js';
+
+export class Car {
     constructor(x, y, width, height, controlType, maxSpeed = 3) {
         this.x = x;
         this.y = y;
