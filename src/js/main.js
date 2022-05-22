@@ -12,12 +12,23 @@ networkCanvas.width = 300;
 
 const importJsonArea = document.getElementById('importJson');
 
+const carInstances = document.getElementById('instances');
+const carInstancesSend = document.getElementById('instancesButton');
+
 const carCtx = carCanvas.getContext('2d');
 const networkCtx = networkCanvas.getContext('2d');
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const N = 500;
-const cars = generateCars(N);
+let cars;
+if (
+    localStorage.getItem('instances') == null ||
+    localStorage.getItem('instances') == ''
+) {
+    cars = generateCars(100);
+} else {
+    cars = generateCars(localStorage.getItem('instances'));
+    carInstances.placeholder = 'Stored: ' + localStorage.getItem('instances');
+}
 let bestCar = cars[0];
 if (
     localStorage.getItem('bestBrain') &&
@@ -64,7 +75,7 @@ function importJson() {
 
 function generateCars(N) {
     const cars = [];
-    for (let i = 1; i < N; i++) {
+    for (let i = 1; i <= N; i++) {
         cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, 'AI'));
     }
     return cars;
@@ -105,3 +116,15 @@ function animate(time) {
     Visualizer.drawNetwork(networkCtx, bestCar.brain);
     requestAnimationFrame(animate);
 }
+
+carInstancesSend.addEventListener('click', (e) => {
+    let instances = carInstances.value;
+    if (isNaN(instances) || instances < 1) {
+        carInstances.style.border = '2px solid red';
+    } else {
+        carInstances.style.border = 'none';
+        localStorage.setItem('instances', carInstances.value);
+        carInstances.placeholder =
+            'Stored: ' + localStorage.getItem('instances');
+    }
+});

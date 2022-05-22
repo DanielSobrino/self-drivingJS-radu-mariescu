@@ -9,21 +9,32 @@
     </head>
     <body>
         <div id="content">
-            <canvas id="carCanvas"></canvas>
             <div id="menu">
-                <div>
+                <div class="row instances">
+                    <label for="instances">Car instances</label>
+                    <textarea
+                        name="instances"
+                        id="instances"
+                        placeholder="Default: 100"
+                    ></textarea>
+                    <button id="instancesButton">Send</button>
+                </div>
+                <div class="row">
                     <button onclick="save()">Save</button>
                     <button onclick="discard()">Discard</button>
                 </div>
                 <a href="#" id="exportJson" download="brain.txt" class="button">
                     Export
                 </a>
-                <textarea
-                    placeholder="Paste json from brain.txt"
-                    id="importJson"
-                ></textarea>
-                <button onclick="importJson()">Import</button>
+                <div class="col">
+                    <textarea
+                        placeholder="Paste json from brain.txt"
+                        id="importJson"
+                    ></textarea>
+                    <button onclick="importJson()">Import</button>
+                </div>
             </div>
+            <canvas id="carCanvas"></canvas>
             <canvas id="networkCanvas"></canvas>
         </div>
         <script type="module" src="../js/utils.js"></script>
