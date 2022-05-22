@@ -100,7 +100,7 @@ function animate(time) {
 
     road.draw(carCtx);
     for (let i = 0; i < traffic.length; i++) {
-        traffic[i].draw(carCtx, 'red');
+        traffic[i].draw(carCtx);
     }
 
     carCtx.globalAlpha = 0.2;
