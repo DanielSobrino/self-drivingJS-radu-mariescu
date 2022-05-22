@@ -47,6 +47,11 @@ export function getRGBA(value) {
     return 'rgba(' + R + ',' + G + ',' + B + ',' + alpha + ')';
 }
 
+export function getRandomColor() {
+    const hue = 290 + Math.random() * 260; // No blue
+    return 'hsl(' + hue + ', 100%, 60%)';
+}
+
 //Get the file contents
 var str = JSON.stringify(localStorage.getItem('bestBrain'));
 //Save the file contents as a DataURI
